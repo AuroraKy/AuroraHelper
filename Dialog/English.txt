@@ -1,0 +1,5 @@
+AurorasHelper_InternetMemorial_NoConnection= -- COULD NOT CONNECT TO PASTEBIN --
+Internet Connection is required to display this Memorial
+Pastebin link this would have displayed:
+
+AurorasHelper_ShowSubtitlesTrigger_CannotFindPath=Could not find .srt file at specified path!{n}DialogText field was also empty.
