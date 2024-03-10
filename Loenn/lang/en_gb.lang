@@ -1,0 +1,197 @@
+mods.AurorasHelper.name=Aurora's Helper
+
+# SpeedLimitFlagController
+entities.AurorasHelper/SpeedLimitFlagController.placements.name.SpeedLimitFlagController=Speed Limit Flag Controller
+entities.AurorasHelper/SpeedLimitFlagController.attributes.description.speedLimit=Speed limit does not take all speed sources into account, it attempts to check for overall movement ignoring direction.
+
+#Friendly Seeker
+entities.AurorasHelper/FriendlySeeker.placements.name.FriendlySeeker=Friendly Seeker
+entities.AurorasHelper/FriendlySeeker.attributes.description.Flag=If this flag is set the friendly seeker will attack the player, otherwise it will not.
+entities.AurorasHelper/FriendlySeeker.attributes.description.Light=Wether the seeker should emit light or not.
+entities.AurorasHelper/FriendlySeeker.attributes.description.StartSpotted=Wether the seeker should start with having the player spotted, this will make it patrol without seeing the player first.
+entities.AurorasHelper/FriendlySeeker.attributes.description.SetFlagIfAttacked=If attacked will set the given attack flag to true. If no flag is given it will set an internal flag that is only relevant for this seeker.
+
+# DieOnFlagsController
+entities.AurorasHelper/DieOnFlagsController.placements.name.DieOnFlagsController=Die On Flags Controller
+entities.AurorasHelper/DieOnFlagsController.attributes.description.Flags=Flags that have to be on for madeline to die, you can give multiple flags that must be on simultaneously by seperating them with , (flag1,flag2)
+entities.AurorasHelper/DieOnFlagsController.attributes.description.FlagsMinimumFrames=Set the minimum frames a flag must be on to count, comma seperated. Enter 0 to disable.
+entities.AurorasHelper/DieOnFlagsController.attributes.description.LeniencyFrames=Frames all flags have to be active to kill madeline
+
+# TimedFlagController
+entities.AurorasHelper/TimedFlagController.placements.name.TimedFlagController=Timed Flag Controller
+entities.AurorasHelper/TimedFlagController.attributes.description.TimedFlag=Flag that will be enabled/disabled on a timer, if the this controller is unloaded (leaving room) the flag will be disabled.
+entities.AurorasHelper/TimedFlagController.attributes.description.FlagOffTime=How long the flag is supposed to be off for in seconds (supports one comma digit). (May desync up to 0.1s on death)
+entities.AurorasHelper/TimedFlagController.attributes.description.FlagOnTime=How long the flag is supposed to be on for in seconds (supports one comma digit). (May desync up to 0.1s on death)
+entities.AurorasHelper/TimedFlagController.attributes.description.StartLeniencyFrames=Extra delay before it starts the off/on cycle of the flag after dying/entering room.
+entities.AurorasHelper/TimedFlagController.attributes.description.DisableFlag=If this flag is true the cycle is disabled.
+entities.AurorasHelper/TimedFlagController.attributes.description.FlagStartingState=Wether the Target flag should start off or on.
+
+# PauseMusicWhenPausedController
+entities.AurorasHelper/PauseMusicWhenPausedController.placements.name.PauseMusicWhenPausedController=Pause Music When Paused Controller
+entities.AurorasHelper/PauseMusicWhenPausedController.attributes.description.MapWide=If this option is ticked it will pause music in the entire map.\nLeaving a room with a controller that does not have the mapwide option ticked will disable the map wide effect.
+
+# FlagTriggeredSpikes
+entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_default=Flag Triggered Spikes (Up, Default)
+entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_outline=Flag Triggered Spikes (Up, Outline)
+entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_cliffside=Flag Triggered Spikes (Up, Cliffside)
+entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_reflection=Flag Triggered Spikes (Up, Reflection)
+entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_default_inverted=Flag Triggered Spikes (Up, Default Inverted)
+entities.AurorasHelper/FlagTriggeredSpikesDown.placements.name.down_default=Flag Triggered Spikes (Down, Default)
+entities.AurorasHelper/FlagTriggeredSpikesDown.placements.name.down_outline=Flag Triggered Spikes (Down, Outline)
+entities.AurorasHelper/FlagTriggeredSpikesDown.placements.name.down_cliffside=Flag Triggered Spikes (Down, Cliffside)
+entities.AurorasHelper/FlagTriggeredSpikesDown.placements.name.down_reflection=Flag Triggered Spikes (Down, Reflection)
+entities.AurorasHelper/FlagTriggeredSpikesDown.placements.name.down_default_inverted=Flag Triggered Spikes (Down, Default Inverted)
+entities.AurorasHelper/FlagTriggeredSpikesLeft.placements.name.left_default=Flag Triggered Spikes (Left, Default)
+entities.AurorasHelper/FlagTriggeredSpikesLeft.placements.name.left_outline=Flag Triggered Spikes (Left, Outline)
+entities.AurorasHelper/FlagTriggeredSpikesLeft.placements.name.left_cliffside=Flag Triggered Spikes (Left, Cliffside)
+entities.AurorasHelper/FlagTriggeredSpikesLeft.placements.name.left_reflection=Flag Triggered Spikes (Left, Reflection)
+entities.AurorasHelper/FlagTriggeredSpikesLeft.placements.name.left_default_inverted=Flag Triggered Spikes (Left, Default Inverted)
+entities.AurorasHelper/FlagTriggeredSpikesRight.placements.name.right_default=Flag Triggered Spikes (Right, Default)
+entities.AurorasHelper/FlagTriggeredSpikesRight.placements.name.right_outline=Flag Triggered Spikes (Right, Outline)
+entities.AurorasHelper/FlagTriggeredSpikesRight.placements.name.right_cliffside=Flag Triggered Spikes (Right, Cliffside)
+entities.AurorasHelper/FlagTriggeredSpikesRight.placements.name.right_reflection=Flag Triggered Spikes (Right, Reflection)
+entities.AurorasHelper/FlagTriggeredSpikesRight.placements.name.right_default_inverted=Flag Triggered Spikes (Right, Default Inverted)
+entities.AurorasHelper/FlagTriggeredSpikesUp.attributes.description.Flag=If flag status is equal to State Checkbox spike collision is disabled
+entities.AurorasHelper/FlagTriggeredSpikesDown.attributes.description.Flag=If flag status is equal to State Checkbox spike collision is disabled
+entities.AurorasHelper/FlagTriggeredSpikesRight.attributes.description.Flag=If flag status is equal to State Checkbox spike collision is disabled
+entities.AurorasHelper/FlagTriggeredSpikesLeft.attributes.description.Flag=If flag status is equal to State Checkbox spike collision is disabled
+
+# FlagDirectionGem
+entities.AurorasHelper/FlagDirectionGem.placements.name.FlagDirectionGem=Flag Direction Gem
+entities.AurorasHelper/FlagDirectionGem.attributes.description.BaseFlag=Flag that is used to check enabled direction.\nTo check for direction <baseFlag>_<dir> is used where dir is one of the following: "U", "UR", "R", "DR", "D", "DL", "L", "UL".\nFor example: Baseflag "DG" and direction "U" results in the flag "DG_U" being checked.\nThe first one that is true is chosen, if none is true the default color is used instead.
+entities.AurorasHelper/FlagDirectionGem.attributes.description.Colors=The 8 colors for the 8 directions in exactly this order: "U", "UR", "R", "DR", "D", "DL", "L", "UL".
+entities.AurorasHelper/FlagDirectionGem.attributes.description.DefaultColor=Color the Gem should be if none of the flags are set, either Black or any of the directions.
+entities.AurorasHelper/FlagDirectionGem.attributes.description.CheckEveryFrame=Wether the Gem should check the flags for change every frame or only whenever the player enters the room the gem is in.
+
+# ChangeRespawnOrb
+entities.AurorasHelper/ChangeRespawnOrb.placements.name.ChangeRespawnOrb=Change Respawn Orb
+entities.AurorasHelper/ChangeRespawnOrb.attributes.description.Sprite=Folder of Sprites to use for the orb, requires idle and flash animation frames
+entities.AurorasHelper/ChangeRespawnOrb.attributes.description.SoundEffect=Sound effect that plays on collecting the orb.
+entities.AurorasHelper/ChangeRespawnOrb.attributes.description.SoundSource=Option to add a sound source (like kevinpc) to have a sound if you are close to the orb, does not have one by default.
+entities.AurorasHelper/ChangeRespawnOrb.attributes.description.Flag=Flag that will be set after the orb is collected to mark it as being collected (will not spawn if flag is true)\nLeave empty to use internal flag.
+entities.AurorasHelper/ChangeRespawnOrb.attributes.description.MapWideOneUse=Wether the orb should set the flag after being collected (making it Map-wide one use unless flag is reset)\nOrb always acts like a one use refill.
+
+# WaveCrystal
+entities.AurorasHelper/WaveCrystal.placements.name.WaveCrystal=Wave Crystal
+entities.AurorasHelper/WaveCrystal.attributes.description.Sprite=Sprite Folder for this Entities animations, requires "outline" "idle" and "flash".
+entities.AurorasHelper/WaveCrystal.attributes.description.Rotation=Direction the wave should go in.
+entities.AurorasHelper/WaveCrystal.attributes.description.speedY=Normal: speedY=speedX\nMini: speedY=1.5*speedX\nYou may also enter any other positive number for custom speed!
+
+# WaveCrystal
+entities.AurorasHelper/HorizontalCollisionDeathController.placements.name.HorizontalCollisionDeathController=Horizontal Collision Death Controller
+
+# DashSolid
+entities.AurorasHelper/DashSolid.placements.name.DashSolid=Dash Solid
+entities.AurorasHelper/DashSolid.attributes.description.ActiveColor= The tint the entity gets once it is active, if set to white nothing happens.
+entities.AurorasHelper/DashSolid.attributes.description.DIR=Direction that activates the dash block. "UP" would active on an up,upleft and upright dash.
+
+# LinkedCoreBlocks.lua
+entities.AurorasHelper/LinkedCoreBlocks.lua.placements.name.LinkedCoreBlocks.lua=Linked Core Block
+# InternetMemorial
+entities.AurorasHelper/InternetMemorial.placements.name.InternetMemorial=Internet Memorial (Will Lag)
+entities.AurorasHelper/InternetMemorial.attributes.description.pastebinLink= The ending part of a pastebin link (i. e. https://pastebin.com/TwaTy5Px -> TwaTy5Px)\nLoading the link will lag the game upon entering the room.
+
+# FairySpawner
+entities.AurorasHelper/FairySpawner.placements.name.FairySpawner=Fairy Spawner
+entities.AurorasHelper/FairySpawner.attributes.description.FairySpeed=Speed with which the fairies travel with.
+entities.AurorasHelper/FairySpawner.attributes.description.SpawnInterval=Interval which decides how many seconds between fairy spawns. (checks every 0.1s interval)
+entities.AurorasHelper/FairySpawner.attributes.description.FairyLimit=Maximum amount of fairies allowed in the room, once the limit is reached will no longer spawn fairies.
+entities.AurorasHelper/FairySpawner.attributes.description.HasToBeOnCamera=Whether the Spawner has to be on camera at least once before it starts spawning fairies.
+
+# Awful Entity Redo pls TODO TODO TODO
+entities.AurorasHelper/BulletHellController.placements.name.BulletHellController=Bullet Hell Controller (WIP)
+entities.AurorasHelper/BulletHellController.attributes.description.debug=If enabled logs position of the user every frame.
+entities.AurorasHelper/BulletHellController.placements.name.battleID=Unique battle id that is used to identify the battle, battles currently must be added via code by registering a IEnumerator function with a unique string into AurorasHelper Module.\nWIP More info in the future.
+
+# DelayedFlagTrigger
+triggers.AurorasHelper/DelayedFlagTrigger.placements.name.DelayedFlagTrigger=Delayed Flag Trigger
+triggers.AurorasHelper/DelayedFlagTrigger.attributes.description.Delay=Delay given in in seconds, accepts exactly one decimal (intervals of 0.1 seconds). Might be off by up to 0.1 seconds.
+triggers.AurorasHelper/DelayedFlagTrigger.attributes.description.Reenter=Do not start another timer while the current one is running, Start timer regardless of the current one or Restart the timer on enter/leave (it will still run while you stand inside).
+triggers.AurorasHelper/DelayedFlagTrigger.attributes.description.State=What state the flag will be set to after the timer.
+triggers.AurorasHelper/DelayedFlagTrigger.attributes.description.Activation=Wether the timer will be activated when the player leaves the trigger (onLeave) or enters it (OnEnter).
+
+# RandomFlagTrigger
+triggers.AurorasHelper/RandomFlagTrigger.placements.name.RandomFlagTriggerSingle=Random Flag Trigger (Single)
+triggers.AurorasHelper/RandomFlagTrigger.placements.name.RandomFlagTriggerGroup=Random Flag Trigger (Group)
+triggers.AurorasHelper/RandomFlagTrigger.attributes.description.State=What state the flag will be set to after the timer.
+triggers.AurorasHelper/RandomFlagTrigger.attributes.description.Chance=Percentage chance of the flag being set to the state given. 20 means 20% chance, does not support decimals.
+triggers.AurorasHelper/RandomFlagTrigger.attributes.description.Type=Type of the trigger, after changing this: Save and reopen the trigger.
+triggers.AurorasHelper/RandomFlagTrigger.attributes.description.Flags=Comma seperated list of flags to consider for group based type
+
+# LogicFlagCounterTrigger
+triggers.AurorasHelper/LogicFlagCounterTrigger.placements.name.LogicFlagCounterTrigger=Logic Flag Counter Trigger
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.Flags= Comma seperated input flags that are counted.
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.Flag= Output flag that is set based on state value
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.FlagState= State of output flag if input count is successfull.
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.Mode= Mode of comparison after the count, either at least, exact or at most.
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.AmountRequired= Amount of flags that are required. If at least is set this is the lower limit, with exact it checks for exactly this amount, with at most this is the upper limit. If the current active flags fall into the limit the output flag is set, otherwise nothing happens.
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.Activation= Whether the trigger should activate when entering, leaving or every frame while staying inside.
+triggers.AurorasHelper/LogicFlagCounterTrigger.attributes.description.CoversScreen= Whether the trigger should act as if it covers the entire screen and active every frame (regardless of activation mode).
+
+# DashcodeHashTrigger
+triggers.AurorasHelper/DashcodeHashTrigger.placements.name.DashcodeHashTrigger=Dashcode Hash Trigger
+triggers.AurorasHelper/DashcodeHashTrigger.attributes.description.HashedCode= Hash of the dashcode, this is used by the code to check if the input is correct and cannot be reversed into the actual code. Make sure to note down your code somewhere!
+triggers.AurorasHelper/DashcodeHashTrigger.attributes.description.CodeLength= Length of the dashcode, the amount of last dashes inside the trigger (without leaving) at which point it is checked if the code is correct. Longer codes are a lot more secure!
+triggers.AurorasHelper/DashcodeHashTrigger.attributes.description.Flag= Flag that is set based on FlagState if dashcode is correct.
+triggers.AurorasHelper/DashcodeHashTrigger.attributes.description.FlagState= State the output flag is set to after successful dashcode.
+triggers.AurorasHelper/DashcodeHashTrigger.attributes.description.LogInputAndHash= If this is enabled after the code length is reached the resulting hash and current code is printed to the console/log.txt every dash. Use this to find the hashed code to enter above! Disable aftewards!
+triggers.AurorasHelper/DashcodeHashTrigger.attributes.description.DeleteAfterSuccess= If the dashcode is successful and this is set the trigger will delete itself afterwards.
+
+# FlagBasedDashcodeTrigger
+triggers.AurorasHelper/DashcodeFlagTrigger.placements.name.DashcodeFlagTrigger=Dashcode Flag Trigger
+triggers.AurorasHelper/DashcodeFlagTrigger.attributes.description.CodeLength= Length of the dashcode. This is how many flags are checked and at which point it is checked if the code is correct.
+triggers.AurorasHelper/DashcodeFlagTrigger.attributes.description.Flag= Flag that is set based on FlagState if dashcode is correct.
+triggers.AurorasHelper/DashcodeFlagTrigger.attributes.description.FlagState= State the output flag is set to after successful dashcode.
+triggers.AurorasHelper/DashcodeFlagTrigger.attributes.description.DeleteAfterSuccess= If the dashcode is successful and this is set the trigger will delete itself afterwards.
+triggers.AurorasHelper/DashcodeFlagTrigger.attributes.description.BaseFlag= Base Flag the trigger looks for to figure out the dash code, the dashcodes must be encoded like "<baseFlag>_<nr>_<dir>"\n<nr> = Number of the dash in the code, starts with 1 and ends with the code length (inclusive)\n<dir> = Exactly one of the following: "U", "UR", "R", "DR", "D", "DL", "L", "UL".\nExample set of 4 flags that set the dashcode R,DL,U,UR assuming the base flag is "DF": DF_1_R, DF_2_DL, DF_3_U, DF_4_UR
+triggers.AurorasHelper/DashcodeFlagTrigger.attributes.description.LogInputAndCode= If this is enabled after the code length is reached the resulting input and the code it is checked against is printed to the console.
+
+# OneUseFlagTrigger
+triggers.AurorasHelper/OneUseFlagTrigger.placements.name.OneUseFlagTrigger=One Use Flag trigger
+triggers.AurorasHelper/OneUseFlagTrigger.placements.description= Flag Trigger that removes itself once it is activated
+triggers.AurorasHelper/OneUseFlagTrigger.attributes.description.Flag= Flag to affect.
+triggers.AurorasHelper/OneUseFlagTrigger.attributes.description.State= Wether the flag should be set or unset.
+triggers.AurorasHelper/OneUseFlagTrigger.attributes.description.Activation= Wether this should activate if the player enters or leaves the trigger.
+
+# ResetMusicTrigger
+triggers.AurorasHelper/ResetMusicTrigger.placements.name.ResetMusicTrigger=Reset Music Trigger
+triggers.AurorasHelper/ResetMusicTrigger.attributes.description.DeleteAfterSuccess= If enabled the trigger will be deleted after success.
+triggers.AurorasHelper/ResetMusicTrigger.attributes.description.Activation= Wether this should activate if the player enters or leaves the trigger.
+
+# ResetStateTrigger
+triggers.AurorasHelper/ResetStateTrigger.placements.name.ResetStateTrigger=Reset State Trigger
+triggers.AurorasHelper/ResetStateTrigger.attributes.description.DeleteAfterSuccess=If enabled the trigger will be deleted after success.
+triggers.AurorasHelper/ResetStateTrigger.attributes.description.OnlyAuroraHelperStates=Only change state if currently in a state added by Aurora helper. Current Aurora Helper States: Wave
+triggers.AurorasHelper/ResetStateTrigger.attributes.description.Activation=Whether this should activate if the player enters or leaves the trigger.
+
+# ResetStateTrigger
+triggers.AurorasHelper/ForcedMovementTrigger.placements.name.ForcedMovementTrigger=Forced Movement Trigger
+triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.Right=Wether this trigger should force movement to the right or the left.
+triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.Persistent=If enabled forced movement is not disabled when leaving the trigger.
+triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.Speed=How fast the player should move. 90 is walking speed.
+
+# ShowSubtitlesTrigger
+triggers.AurorasHelper/ShowSubtitlesTrigger.placements.name.ShowSubtitlesTrigger=Show Subtitles Trigger
+triggers.AurorasHelper/ShowSubtitlesTrigger.attributes.description.Path=Path from Assets/Subtitles folder to valid .srt file.
+triggers.AurorasHelper/ShowSubtitlesTrigger.attributes.description.DialogText=Line of text to show if path is invalid (can be used instead of .srt file)
+triggers.AurorasHelper/ShowSubtitlesTrigger.attributes.description.DialogTime=How long to show DialogText in seconds, if shown.
+triggers.AurorasHelper/ShowSubtitlesTrigger.attributes.description.RequiredFlags=Comma seperated list of flags that must be active for this trigger to activate.
+
+# PlayAudioTrigger
+triggers.AurorasHelper/PlayAudioTrigger.placements.name.PlayAudioTrigger=Play Audio Trigger
+triggers.AurorasHelper/PlayAudioTrigger.attributes.description.Path=Path from Audio folder to valid .mp3 file.
+triggers.AurorasHelper/PlayAudioTrigger.attributes.description.Flag=Set when the Audio playing is finished or interrupted
+triggers.AurorasHelper/PlayAudioTrigger.attributes.description.CheckFlagsWhileInside= Checks for required flags as long as you stand inside and will play the sound once it meets the condition
+triggers.AurorasHelper/PlayAudioTrigger.attributes.description.Reusable= Can be used multiple times (in the same death)
+triggers.AurorasHelper/PlayAudioTrigger.attributes.description.InterruptOtherSounds= Interrupt other sounds made by PlayAudioTriggers
+triggers.AurorasHelper/PlayAudioTrigger.attributes.description.RequiredFlags=Comma seperated list of flags that must be active for this trigger to activate.
+
+
+# GoldenSaver
+triggers.AurorasHelper/GoldenSaverTrigger.placements.name.GoldenSaverTrigger=Golden Saver Trigger
+triggers.AurorasHelper/GoldenSaverTrigger.attributes.description.safeFromRetry=Prevents Golden Reset if the player dies while the pause menu is open (retry).
+triggers.AurorasHelper/GoldenSaverTrigger.attributes.description.safeFromDeath=Prevents Golden Reset if the player dies.
+
+# TouchSwitchActivatorAttacher
+triggers.AurorasHelper/TouchSwitchActivatorAttacher.placements.name.TouchSwitchActivatorAttacher=Touch Switch Activator Attacher
+triggers.AurorasHelper/TouchSwitchActivatorAttacher.placements.description.TouchSwitchActivatorAttacher=Makes any entity it collides with able to activate touchswitches if touching

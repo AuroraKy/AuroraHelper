@@ -1,0 +1,63 @@
+# SpeedLimitFlagController
+placements.entities.AurorasHelper/SpeedLimitFlagController.tooltips.speedLimit=Speed limit does not take all speed sources into account, it attempts to check for overall movement ignoring direction.
+
+#Friendly Seeker
+placements.entities.AurorasHelper/FriendlySeeker.tooltips.Flag=If this flag is set the friendly seeker will attack the player, otherwise it will not.
+placements.entities.AurorasHelper/FriendlySeeker.tooltips.Light=Wether the seeker should emit light or not.
+placements.entities.AurorasHelper/FriendlySeeker.tooltips.StartSpotted=Wether the seeker should start with having the player spotted, this will make it patrol without seeing the player first.
+placements.entities.AurorasHelper/FriendlySeeker.tooltips.SetFlagIfAttacked=If attacked will set the given attack flag to true. If no flag is given it will set an internal flag that is only relevant for this seeker.
+
+# Die On Flags Controller
+placements.entities.AurorasHelper/DieOnFlagsController.tooltips.Flags=Flags that have to be on for madeline to die, you can give multiple flags that must be on simultaneously by seperating them with , (flag1,flag2)
+placements.entities.AurorasHelper/DieOnFlagsController.tooltips.FlagsMinimumFrames=Set the minimum frames a flag must be on to count, comma seperated. Enter 0 to disable.
+placements.entities.AurorasHelper/DieOnFlagsController.tooltips.LeniencyFrames=Frames all flags have to be active to kill madeline
+
+# Timed Flag Controller
+placements.entities.AurorasHelper/TimedFlagController.tooltips.TimedFlag=Flag that will be enabled/disabled on a timer, if the this controller is unloaded (leaving room) the flag will be disabled.
+placements.entities.AurorasHelper/TimedFlagController.tooltips.FlagOffTime=How long the flag is supposed to be off for in 0.1 seconds. (May desync up to 0.1s on death)
+placements.entities.AurorasHelper/TimedFlagController.tooltips.FlagOnTime=How long the flag is supposed to be on for in 0.1 seconds. (May desync up to 0.1s on death)
+placements.entities.AurorasHelper/TimedFlagController.tooltips.StartLeniencyFrames=Extra delay before it starts the off/on cycle of the flag after dying/entering room.
+placements.entities.AurorasHelper/TimedFlagController.tooltips.DisableFlag=If this flag is true the cycle is disabled.
+placements.entities.AurorasHelper/TimedFlagController.tooltips.FlagStartingState=Wether the Target flag should start off or on.
+
+# Pause Music When Paused Controller
+placements.entities.AurorasHelper/PauseMusicWhenPausedController.tooltips.MapWide=If this option is ticked it will pause music in the entire map.\nLeaving a room with a controller that does not have the mapwide option ticked will disable the map wide effect.
+
+# ChangeRespawnOrb
+placements.entities.AurorasHelper/ChangeRespawnOrb.tooltips.Sprite=Folder of Sprites to use for the orb, requires idle and flash animation frames
+placements.entities.AurorasHelper/ChangeRespawnOrb.tooltips.SoundEffect=Sound effect that plays on collecting the orb.
+placements.entities.AurorasHelper/ChangeRespawnOrb.tooltips.SoundSource=Option to add a sound source (like kevinpc) to have a sound if you are close to the orb, does not have one by default.
+placements.entities.AurorasHelper/ChangeRespawnOrb.tooltips.Flag=Flag that will be set after the orb is collected to mark it as being collected (will not spawn if flag is true)\nLeave empty to use internal flag.
+placements.entities.AurorasHelper/ChangeRespawnOrb.tooltips.MapWideOneUse=Wether the orb should set the flag after being collected (making it Map-wide one use unless flag is reset)\nOrb always acts like a one use refill.
+
+# Delayed Flag Trigger
+placements.triggers.AurorasHelper/DelayedFlagTrigger.tooltips.Delay=Delay given in in seconds, accepts exactly one decimal (intervals of 0.1 seconds). Might be off by up to 0.1 seconds.
+placements.triggers.AurorasHelper/DelayedFlagTrigger.tooltips.Reenter=Do not start another timer while the current one is running, Start timer regardless of the current one or Restart the timer on enter/leave (it will still run while you stand inside).
+placements.triggers.AurorasHelper/DelayedFlagTrigger.tooltips.State=What state the flag will be set to after the timer.
+placements.triggers.AurorasHelper/DelayedFlagTrigger.tooltips.Activation=Wether the timer will be activated when the player leaves the trigger (onLeave) or enters it (OnEnter).
+
+# Random Flag Trigger
+placements.triggers.AurorasHelper/RandomFlagTrigger.tooltips.State=What state the flag will be set to after the timer.
+placements.triggers.AurorasHelper/RandomFlagTrigger.tooltips.Chance=Percentage chance of the flag being set to the state given. 20 means 20% chance, does not support decimals.
+placements.triggers.AurorasHelper/RandomFlagTrigger.tooltips.Type=Type of the trigger, if any type starting with "G" is selected only "Flags" is relevant. Otherwise everything but "Flags" is relevant.
+placements.triggers.AurorasHelper/RandomFlagTrigger.tooltips.Flags=Comma seperated list of flags to consider for group based type
+
+# LogicFlagCounterTrigger
+placements.triggers.AurorasHelper/LogicFlagCounterTrigger.tooltips.Flags= Comma seperated input flags that are counted.
+placements.triggers.AurorasHelper/LogicFlagCounterTrigger.tooltips.Flag= Output flag that is set based on state value
+placements.triggers.AurorasHelper/LogicFlagCounterTrigger.tooltips.FlagState= State of output flag if input count is successfull.
+placements.triggers.AurorasHelper/LogicFlagCounterTrigger.tooltips.Mode= Mode of comparison after the count, either at least, exact or at most.
+placements.triggers.AurorasHelper/LogicFlagCounterTrigger.tooltips.AmountRequired= Amount of flags that are required. If at least is set this is the lower limit, with exact it checks for exactly this amount, with at most this is the upper limit. If the current active flags fall into the limit the output flag is set, otherwise nothing happens.
+placements.triggers.AurorasHelper/LogicFlagCounterTrigger.tooltips.Activation= Whether the trigger should activate when entering, leaving or every frame while staying inside.
+
+# DashcodeHashTrigger
+placements.triggers.AurorasHelper/DashcodeHashTrigger.tooltips.HashedCode= Hash of the dashcode, this is used by the code to check if the input is correct and cannot be reversed into the actual code. Make sure to note down your code somewhere!
+placements.triggers.AurorasHelper/DashcodeHashTrigger.tooltips.CodeLength= Length of the dashcode, the amount of last dashes inside the trigger (without leaving) at which point it is checked if the code is correct. Longer codes are a lot more secure!
+placements.triggers.AurorasHelper/DashcodeHashTrigger.tooltips.Flag= Flag that is set baed on FlagState if dashcode is correct.
+placements.triggers.AurorasHelper/DashcodeHashTrigger.tooltips.FlagState= State the output flag is set to after successfull dashcode.
+placements.triggers.AurorasHelper/DashcodeHashTrigger.tooltips.LogInputAndHash= If this is enabled after the code length is reached the resulting hash and current code is printed to the console/log.txt every dash. Use this to find the hashed code to enter above! Disable aftewards!
+placements.triggers.AurorasHelper/DashcodeHashTrigger.tooltips.DeleteAfterSuccess= If the dashcode is successful and this is set the trigger will delete itself afterwards.
+
+# ResetMusicTrigger
+placements.triggers.AurorasHelper/ResetMusicTrigger.tooltips.DeleteAfterSuccess= If enabled the trigger will be deleted after success.
+placements.triggers.AurorasHelper/ResetMusicTrigger.tooltips.Activation= Wether this should activate if the player enters or leaves the trigger.

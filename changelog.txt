@@ -1,0 +1,162 @@
+Bug: If you are pause dlong enough in pause music controller on awake music it just... starts again???
+Music Sync respawns?
+
+Ideas:
+[] PlayAudio has Subtitle field (does the same as subtitle trigger)
+
+Should spider hit all things in the teleport? lol
+
+Things to fix:
+Jump input seems to not work sometimes? weird.
+
+GD gamemodes:
+X ship -> funny (hold to go up/down)
+X wave -> funny (it's a wave idk)
+X spider -> teleport to thing above and change gravity
+x ball -> spider but no telport
+"fake states"
+/ cube -> hold right (but you can't hold jump to go higher ExtVar.)
+/ robot -> hold right (can hold jump)
+/ ufo -> hold right infinite jumps
+
+Stuff I gotta make:
+Pulse entity thing
+Pulse trigger thing
+draw lines connecting the blocks
+
+0.9.1
+GoldenSaverTrigger fix bug where berry is duplicated on death in room golden berry appears in
+
+0.9.0
+Added GoldenSaverTrigger which can let you prevent golden resets while dying/retrying inside the trigger.
+
+0.8.0
+Added TouchSwitchActivatorAttacher that lets you add the ability to activate touch switches to entities with a collider
+
+0.7.2
+You can now tint wavecrystal to show the fact it is mini, very simple implementation does not affect particles.
+
+0.7.1
+PauseMusicOnPause bugfix
+
+0.7.0
+If people used old wavecrystal default path now automatically changes to new path.
+Default Wavecrystal speedY changed to be 1:1 ratio with speedX
+Wavecrystal now has "Normal"/"Mini" mode options for speedY instead of just asking for a speed value
+Add Optional dependency to speedruntools (unused rn)
+Fix infinite jump glitch with ufo entity
+Fix savestates breaking speeds and stuff (oof the soluition kinda sucks lmao)
+Balls no longer fail to reverse or change player speed if already in ball
+
+0.6.1
+
+Added LinkedCoreBlock
+0.6.0
+MusicSyncSpawnController (resets music to when spawnpoint was changed, kinda rough)
+ForcedMovementTrigger now resets on respawn
+Lots of gd modes
+
+0.5.0
+Fixed a bug with ShowSubtitlesTrigger ignoring milliseconds in the timing of srt files
+Subtitle that just shows a dialog for x seconds
+Subtitles can "Queue" instead of replacing eachother
+
+0.4.1
+Fixed Things Attaching to DashSolids
+
+0.4.0
+Added InternetMemorial (it's kinda laggy lol idk how to fix)
+Made PlayAudio have more options (WE NEED MOREEEE)
+
+0.3.2
+Fix splipped droosts not being blocked by dashblocks (dashblocks should be more robust now)
+Fix PlayAudioTrigger warning log text error if file is not found
+0.3.1
+Added flag that is set after PlayAudioTrigger sound stops playing
+0.3.0
+Changed how music is paused with pause music controller (maybe bugfix?)
+Added PlayAudioTrigger (mp3)
+Added PlaySubtitlesTrigger (srt)
+0.2.1 - 0.2.3
+Modified FairySpawner to be more useable (added sprites, added some options, made fairies bloom and have light)
+Added CoversScreen to LogicFlagCounterTrigger
+0.2.0
+Wave Crystal -> Added directions
+ResetStateTrigger
+force right/left movement trigger ( improvement?)
+hit wall death controller
+PauseMusicWHenpausedcontroller now correctly stops when you teleport using debug menu
+Fix PauseMusicWhenPausedController crashing if no music is playing
+Temporary Fairy Spawner
+Now actually gonna upadte minor versions (misc)
+0.1.22
+Fixed symbol_a not being loaded as default because of typo in code
+Added DashSolid, a block that becomes solid while you are dashing.
+0.1.21
+Colorblind option for gems (on by default) using some symbols by mkboi27 and reinhardt.
+Fixed name of one of the spike options :sobeline:
+0.1.20
+[ ] Wave Crystal
+ [X] Functionality to the right
+ [X] trail
+OneUseFlag trigger
+Fixed Activation being mixed up in ResetMusictrigger
+0.1.19
+Changed RandomFlagTrigger single mode to print seed as well so it can be distinguished and tas can see current seed.
+0.1.18
+TimedFlagController added FlagStartingState and DisableFlag.
+TimedFlagController can no longer be externally influenced by just setting the flag it is managing.
+Added GEOFNR (Group: Enable One Flag No Repeats) option to Random Flag Trigger
+Changed TimedFlagController Ahorn description since it uses integers and does not support decimals
+0.1.17
+Pause Music When Game Is Paused Controller
+Reset Music Trigger
+0.1.16
+Added ChangeRespawnOrb which is basically just a change respawn trigger one use entity (Loenn Only)
+Bugfix: Fixed Position of Flag Direction Gem in Loenn
+Change: Changed Default colors of Flag Direction Gem In Loenn
+Change: DieOnFlagsController first resets the flags then kills the player.
+0.1.15
+Added a reskin of FlagBasedSpikes (as an example how it could be done)
+Added Flag Direction Gems, can be set to colors based on which flags are active and have a default color. Loenn only.
+0.1.14
+Added OnStay to LogicFlagCounterTrigger which checks the status every frame while inside the trigger.
+0.1.13
+Added FlagBasedSpikes which are spikes that disable collision based on a flag. Loenn only.
+Added DashcodeFlagTrigger which is a Trigger where you set the dashcode via flags, so it can be randomized if so wished. Loenn only.
+0.1.12
+Add Grouped Flag Trigger option that picks one and remembers it until chapter restart/exit
+0.1.11
+Added 3 Grouped Flag Trigger options to RandomFlagTrigger
+Made sure everytime RandomFlagTrigger is triggered randomness advances 1 step, no matter the outcome.
+0.1.10
+Friendly Seeker set attack flag if attacked option actually does something now
+0.1.9
+Dashcode Hash Trigger added
+Added commands ah_flag and ah_flag_set for flag debugging in game
+Random Flag Trigger prints with Info tag again because that is shown more than it not doing so apparently? I am a bit confused.
+0.1.8
+Logic Flag Counter Trigger added
+Random Flag Trigger now prints into log without Info tag because it doesn't show up on default.
+0.1.7
+Lua Support
+Ahorn Support
+Friendly Seeker
+BulletHell WIP start
+0.1.6
+RandomFlag Trigger Logging
+0.1.5
+RandomFlag Trigger
+0.1.4
+Added "Reset timer" option to DelayedFlagTrigger and made it default
+Restructuring of DelayedFlagTrigger code
+0.1.3
+Added DelayedFlagTrigger trigger
+Fixed Ahorn tooltips
+0.1.2
+Added "minimum frames active to count" for each flag which is kinda weird but it makes a map better so sure..
+0.1.1
+Add leniency after death to TimedFlagController
+Made TimedFlagController more consistent after death and made decisecond increments standard
+0.1.0
+Creation
