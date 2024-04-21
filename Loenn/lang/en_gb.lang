@@ -195,3 +195,8 @@ triggers.AurorasHelper/GoldenSaverTrigger.attributes.description.safeFromDeath=P
 # TouchSwitchActivatorAttacher
 triggers.AurorasHelper/TouchSwitchActivatorAttacher.placements.name.TouchSwitchActivatorAttacher=Touch Switch Activator Attacher
 triggers.AurorasHelper/TouchSwitchActivatorAttacher.placements.description.TouchSwitchActivatorAttacher=Makes any entity it collides with able to activate touchswitches if touching
+
+# ConvertSpeedDirectionTrigger
+triggers.AurorasHelper/ConvertSpeedDirectionTrigger.placements.name.ConvertSpeedDirectionTrigger=Convert Speed Direction Trigger
+triggers.AurorasHelper/ConvertSpeedDirectionTrigger.placements.description.ConversionPercentage= Percentage of the Speed should be transformed into the other direction. 1 is 100%
+triggers.AurorasHelper/ConvertSpeedDirectionTrigger.placements.description.RemainderPercentage= Percentage of the Speed that should remain after conversion. 1 is 100%

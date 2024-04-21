@@ -24,6 +24,10 @@ Pulse entity thing
 Pulse trigger thing
 draw lines connecting the blocks
 
+0.10.0
+Add ConvertSpeedDirectionTrigger
+
+
 0.9.2
 Removed InternetMemorial since it was apparently causing antivirus false positives (?) Rip that entity.
 
