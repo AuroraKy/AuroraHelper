@@ -68,8 +68,8 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			};
 			this.flash.CenterOrigin();
 
-            Color color = sprite.Color = data.HexColor("tint", Color.White);
-
+            Color color = Calc.HexToColor(data.Attr("tint", "fffff"));
+			sprite.Color = color;
             Vector2 vecRotation = (rotation == WaveState.ROTATION.UP ? new Vector2(0, -1)
 								  : (rotation == WaveState.ROTATION.RIGHT ? new Vector2(1, 0)
 								  : (rotation == WaveState.ROTATION.DOWN ? new Vector2(0, 1) : new Vector2(-1, 0))));
