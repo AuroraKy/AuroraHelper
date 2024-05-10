@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using MonoMod.Utils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Celeste.Mod.AurorasHelper.Entities
@@ -24,6 +25,8 @@ namespace Celeste.Mod.AurorasHelper.Entities
         private Color ActiveColor;
 		private Player player;
 		private StaticMover mover;
+		private int remainCollidableFrames = 0;
+		private Coroutine becomeUncollidable;
 
 		public DashSolid(EntityData data, Vector2 offset) : base(data.Position + offset, (float) data.Width, (float) data.Height, false)
 		{
@@ -32,7 +35,11 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			blockDirection = (DIR)data.Int("DIR", 0);
 			string texturePath = data.Attr("TexturePath", "objects/auroras_helper/dashsolid/dream");
             string OnTexturePath = data.Attr("OnTexturePath", "objects/auroras_helper/dashsolid/dream");
-			ActiveColor = data.HexColor("ActiveColor", Color.Cyan);
+			remainCollidableFrames = data.Int("RemainCollidableFrames", 0);
+            this.becomeUncollidable = new Coroutine(false);
+            base.Add(this.becomeUncollidable);
+
+            ActiveColor = data.HexColor("ActiveColor", Color.Cyan);
 			Add(new DashListener
 			{
 				OnDash = new Action<Vector2>(this.DashedDirection)
@@ -78,9 +85,20 @@ namespace Celeste.Mod.AurorasHelper.Entities
         public override void Update()
         {
 			base.Update();
-			if (!player?.DashAttacking ?? true) this.Collidable = false;
+			if (!player?.DashAttacking ?? true && !this.Collidable)
+			{
+				if(!this.becomeUncollidable.Active) becomeUncollidable.Replace(BecomeUncollidable());
+            }
 			if (HasPlayerOnTop() || HasPlayerRider() || HasPlayerClimbing()) mover.TriggerPlatform();
         }
+
+		private IEnumerator BecomeUncollidable()
+		{
+			yield return this.remainCollidableFrames * 0.017f;
+			this.Collidable = false;
+			this.becomeUncollidable.Cancel();
+			yield return null;
+		}
 
         public override void Render()
 		{
@@ -137,8 +155,16 @@ namespace Celeste.Mod.AurorasHelper.Entities
 		private void DashedDirection(Vector2 dir)
 		{
 			// new dash initiated, reset so it doesn't stay solid
-			this.Collidable = CheckBlock(dir);
-		}
+			bool shouldBeSolid = CheckBlock(dir);
+			if (shouldBeSolid)
+			{
+				this.becomeUncollidable.Cancel();
+                this.Collidable = true;
+            } else
+			{
+				this.becomeUncollidable.Replace(BecomeUncollidable());
+            }
+        }
 
 		internal static bool DreamDashCheckHook(On.Celeste.Player.orig_DreamDashCheck orig, Player self, Vector2 dir)
         {

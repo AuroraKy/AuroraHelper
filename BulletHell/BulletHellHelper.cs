@@ -54,13 +54,13 @@ namespace Celeste.Mod.AurorasHelper.BulletHell
             this.globalOffset = globalOffset;
         }
 
-        public void ShootBullet(Vector2 from, Vector2 to, BulletData data= new BulletData())
+        public void ShootBullet(Vector2 from, Vector2 to, BulletData data = new BulletData())
         {
             //TODO sfx?
             this.level.Add(Engine.Pooler.Create<Bullet>().Init(from + this.globalOffset, to + this.globalOffset, data));
         }
 
-        public void ShootBeam(Vector2 from, Vector2 to, LaserData data=new LaserData())
+        public void ShootBeam(Vector2 from, Vector2 to, LaserData data = new LaserData())
         {
             //TODO sfx?
             this.level.Add(Engine.Pooler.Create<Beam>().Init(from + this.globalOffset, to + this.globalOffset, data));
@@ -73,7 +73,7 @@ namespace Celeste.Mod.AurorasHelper.BulletHell
 
             Vector2 vectorDiff = (to - from);
             vectorDiff.Normalize();
-            double rotationAmount = 2*Math.PI/bulletAmount;
+            double rotationAmount = 2 * Math.PI / bulletAmount;
             for (int i = 0; i < bulletAmount; i++)
             {
                 ShootBullet(from, from + vectorDiff.Rotate((float)(rotationAmount * i)));
@@ -91,6 +91,15 @@ namespace Celeste.Mod.AurorasHelper.BulletHell
         {
             //TODO (how do I add delay?)
         }
+
+        public void ShootBoomerang() { }
+        public void ShootSeeker() { }
+        public void ShootStutter() { }
+        public void ShootRingSeeker() { }
+        public void ShootBouncer() { }
+        public void ShootCurver() { }
+        public void ShootExpander() { }
+
 
     }
 }

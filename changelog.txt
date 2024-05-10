@@ -24,6 +24,13 @@ Pulse entity thing
 Pulse trigger thing
 draw lines connecting the blocks
 
+0.11.0
+Added TeleportRoomOnFlagController (Teleports you to same spot in the room)
+Fix console.writeline being active in dashsolid
+
+0.10.1
+Added RemainCollidableFrames to DashSolid, letting you set how many frames it should remain collidable after dash ends
+
 0.10.0
 Add ConvertSpeedDirectionTrigger
 

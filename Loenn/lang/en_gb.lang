@@ -30,6 +30,15 @@ entities.AurorasHelper/TimedFlagController.attributes.description.FlagStartingSt
 entities.AurorasHelper/PauseMusicWhenPausedController.placements.name.PauseMusicWhenPausedController=Pause Music When Paused Controller
 entities.AurorasHelper/PauseMusicWhenPausedController.attributes.description.MapWide=If this option is ticked it will pause music in the entire map.\nLeaving a room with a controller that does not have the mapwide option ticked will disable the map wide effect.
 
+# PauseMusicWhenPausedController
+entities.AurorasHelper/TeleportRoomOnFlagController.placements.name.TeleportRoomOnFlagController=Teleport Room On Flag Controller
+entities.AurorasHelper/TeleportRoomOnFlagController.placements.description.TeleportRoomOnFlagController=Teleport player to same spot in another room
+entities.AurorasHelper/TeleportRoomOnFlagController.attributes.description.Flag=If this flag is set teleport happens, is unset on teleport
+entities.AurorasHelper/TeleportRoomOnFlagController.attributes.description.NewRoom=Room to be teleported to
+entities.AurorasHelper/TeleportRoomOnFlagController.attributes.description.sound=Whether to make a glitch sound on teleport
+entities.AurorasHelper/TeleportRoomOnFlagController.attributes.description.glitch=Whether glitch effect should be played on teleport (if duration > 0)
+entities.AurorasHelper/TeleportRoomOnFlagController.attributes.description.duration=How long to wait before actually teleporting the player after triggering in seconds
+
 # FlagTriggeredSpikes
 entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_default=Flag Triggered Spikes (Up, Default)
 entities.AurorasHelper/FlagTriggeredSpikesUp.placements.name.up_outline=Flag Triggered Spikes (Up, Outline)

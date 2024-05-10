@@ -9,11 +9,12 @@ entity.placements = {
     name = "DashSolid",
     data = {
         DIR = 0,
-        TexturePath = "",
-        OnTexturePath = "",
+        TexturePath = "objects/auroras_helper/dashsolid/dream",
+        OnTexturePath = "objects/auroras_helper/dashsolid/solid",
         ActiveColor = "00FFFF",
+        RemainCollidableFrames = 0,
         width = 16,
-        height = 16
+        height = 16,
     }
 }
 
@@ -30,6 +31,9 @@ entity.fieldInformation = {
     ActiveColor = {
         fieldType = "color",
         allowXNAColors = true
+    },
+    RemainCollidableFrames = {
+        fieldType = "integer"
     }
 }
 

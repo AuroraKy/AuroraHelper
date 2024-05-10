@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Celeste.Mod.AurorasHelper.BulletHell
 {
     // TODO
-    // YAML -> Sequence
+    // text -> Sequence
     public class BulletHellParser
     {
         public BulletHellParser(String path)
