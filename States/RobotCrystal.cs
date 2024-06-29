@@ -21,6 +21,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
 		private readonly ParticleType p_regen;
 		private readonly string soundEffect = "event:/game/general/diamond_touch";
 		private readonly float speedX;
+        private readonly bool immediatelyOnRespawn;
         private float respawnTimer;
 
 		private Level level;
@@ -30,6 +31,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			base.Collider = new Hitbox(16f, 16f, -8f, -8f);
 
 			speedX = data.Float("speedX", 200f);
+			immediatelyOnRespawn = data.Bool("ImmediatelyOnRespawn", false);
 
             string spritePrefix = data.Attr("Sprite", "objects/auroras_helper/mode_crystals/robot_crystal/");
             int dir = data.Int("Dir", 1);
@@ -92,16 +94,21 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			{
 				OnDash = (Vector2 dir) =>
 				{
-					AurorasHelperSession session = AurorasHelperModule.Session;
-
-					if(session.isInFakeModeState && session.trailColor == Color.White)
-					{
-						session.isInFakeModeState = false;
-                        session.isForcedMovement = false;
-                    }
 				}
 			});
 		}
+
+        public static void OnLeaveCrystalState()
+        {
+            AurorasHelperSession session = AurorasHelperModule.Session;
+
+            if (session.isInFakeModeState && session.currentState == AurorasHelperSession.STATE.Robot)
+            {
+                session.isInFakeModeState = false;
+                session.isForcedMovement = false;
+				session.currentState = AurorasHelperSession.STATE.None;
+            }
+        }
 
         public override void Added(Scene scene)
         {
@@ -170,9 +177,11 @@ namespace Celeste.Mod.AurorasHelper.Entities
             player.StateMachine.State = Player.StNormal;
             AurorasHelperModule.ResetFakeStates();
             AurorasHelperSession session = AurorasHelperModule.Session;
-			session.isInFakeModeState = true;
+            session.currentState = AurorasHelperSession.STATE.Robot;
+            session.isInFakeModeState = true;
 			session.isForcedMovement = true;
-			session.forcedSpeed = speedX;
+			session.forcedMovementImmediatelyOnRespawn = immediatelyOnRespawn;
+            session.forcedSpeed = speedX;
 			session.trailColor = Color.White;
 
             // respawn stuff

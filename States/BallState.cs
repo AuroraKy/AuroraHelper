@@ -3,6 +3,7 @@ using System.Collections;
 using Monocle;
 using Microsoft.Xna.Framework;
 using Celeste.Mod.AurorasHelper.Components;
+using Celeste.Mod.AurorasHelper.Entities;
 
 namespace Celeste.Mod.AurorasHelper
 {
@@ -16,6 +17,7 @@ namespace Celeste.Mod.AurorasHelper
 
         public static int StateNumber;
         private static int originalGravity;
+        private static bool resetGravity;
         private static bool inverted = false;
         
         public static int Update()
@@ -32,6 +34,8 @@ namespace Celeste.Mod.AurorasHelper
             {
                 sd.speed.Y = 0;
             }
+
+
             if (player.OnGround() && Input.Jump.Pressed)
             {
                 inverted = !inverted;
@@ -61,17 +65,23 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void Begin()
         {
-            AurorasHelperModule.Session.isInFakeModeState = false;
+            AurorasHelperModule.ResetFakeStates();
             Player player = Engine.Scene.Tracker.GetEntity<Player>();
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
+
+            originalGravity = AurorasHelperModule.GravityHelperExports.GetPlayerGravity.Invoke();
+            sd.originalGravity = originalGravity;
+            resetGravity = sd.resetGravity;
+            inverted = originalGravity == 1;
+            if(BallCrystal.startGravityBasedOnVerticalVelocity)
+            {
+                if (player.Speed.Y < 0) inverted = true;
+                else inverted = false;
+                AurorasHelperModule.GravityHelperExports.SetPlayerGravity(inverted ? 1 : 0, 1f);
+            }
             player.Speed = new Vector2(sd.speedX * (int)sd.BallStateDir, 0);
             sd.speed = player.Speed;
             sd.speedY = 160f;
-            if (sd.resetGravity)
-            {
-                originalGravity = AurorasHelperModule.GravityHelperExports.GetPlayerGravity.Invoke();
-                sd.originalGravity = originalGravity;
-            }
             //float speed = Math.Max(200, Math.Max(player.Speed.X, player.Speed.Y));
             //speedX = speed;
             //speedY = speed;
@@ -80,9 +90,7 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void End()
         {
-            Player player = Engine.Scene.Tracker.GetEntity<Player>();
-            var sd = player?.Components.Get<AuroraHelperPlayerStateData>();
-            if (sd?.resetGravity ?? true)
+            if (resetGravity)
             {
                 AurorasHelperModule.GravityHelperExports.SetPlayerGravity?.Invoke(originalGravity, 1);
             }

@@ -24,6 +24,7 @@ entity.placements = {
         speedX = 200.0,
         speedY = -1,
         tint = "ffffff",
+        Invisible = false,
     }
 }
 

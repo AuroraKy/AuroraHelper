@@ -27,7 +27,11 @@ namespace Celeste.Mod.AurorasHelper.Entities
             {
                 Light.RemoveSelf();
             }
-            AttackFlag = data.Attr("AttackFlag", "friendlySeeker_"+data.ID+"_attack_flag");
+            AttackFlag = data.Attr("AttackFlag", "");
+            if(AttackFlag == "")
+            {
+                AttackFlag = "friendlySeeker_" + data.ID + "_attack_flag";
+            }
             _shouldSee = data.Bool("SeePlayer");
             _setFlagIfAttacked = data.Bool("SetFlagIfAttacked");
             if (data.Bool("StartSpotted"))

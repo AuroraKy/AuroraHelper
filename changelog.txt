@@ -24,6 +24,23 @@ Pulse entity thing
 Pulse trigger thing
 draw lines connecting the blocks
 
+[] pause music on pause controller broken?
+
+0.12.0
+Wave also works with pressing up
+Fix spider not reversing your direction if already in spider state
+ForcedMovementTrigger, CubeCrystal, RobotCrystal and UfoCrystal immediatelyAfterRespawn 
+Ufo->cube/Ufo->robot no longer gives infinite jumps until ground is touched
+Fix a bug where spider would force movement after you dash out of it
+Fix Ball and Spider not correctly figuring out your current gravity thus eating your first jump sometimes
+
+0.11.2
+fix a crash on loading save if player is null
+
+0.11.1 
+Fix FriendlySeekers counting an empty string as a valid attack flag and attacking you for no reason
+Improve FlagToggleSpike code also made them no longer render if inactive.
+
 0.11.0
 Added TeleportRoomOnFlagController (Teleports you to same spot in the room)
 Fix console.writeline being active in dashsolid

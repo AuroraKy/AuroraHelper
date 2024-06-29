@@ -60,11 +60,10 @@ namespace Celeste.Mod.AurorasHelper
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
             speed = sd.speed;
             dir = sd.SpiderStateDir;
-            resetGravity = sd.resetGravity;
             originalGravity = sd.originalGravity;
 
             Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, player.Sprite.Scale.Y);
-
+            if ((speed.X > 0 && dir == DIR.LEFT ) || (speed.X < 0 && dir == DIR.RIGHT)) speed.X *= -1;
             if (!player.OnGround())
             {
                 speed.Y = Calc.Approach(speed.Y, 160f, 900f * Engine.DeltaTime);
@@ -132,20 +131,21 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void Begin()
         {
-            AurorasHelperModule.Session.isInFakeModeState = false;
+            AurorasHelperModule.ResetFakeStates();
             Player player = Engine.Scene.Tracker.GetEntity<Player>();
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
+
+            originalGravity = AurorasHelperModule.GravityHelperExports.GetPlayerGravity.Invoke();
+            sd.originalGravity = originalGravity;
+            resetGravity = sd.resetGravity;
+            inverted = originalGravity == 1;
+
             speedX = sd.speedX;
             dir = sd.SpiderStateDir;
 
             player.Speed = new Vector2(speedX * (int)dir, 0);
             speed = new Vector2(speedX * (int) dir, 0);
             sd.speed = speed;
-            if(resetGravity)
-            {
-                originalGravity = AurorasHelperModule.GravityHelperExports.GetPlayerGravity.Invoke();
-                sd.originalGravity = originalGravity;
-            }
             //float speed = Math.Max(200, Math.Max(player.Speed.X, player.Speed.Y));
             //speedX = speed;
             //speedY = speed;
@@ -154,7 +154,7 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void End()
         {
-            if(resetGravity)
+            if (resetGravity)
             {
                 AurorasHelperModule.GravityHelperExports.SetPlayerGravity?.Invoke(originalGravity, 1);
             }

@@ -14,7 +14,6 @@ namespace Celeste.Mod.AurorasHelper.Entities
     {
         private string flag;
         private Boolean state;
-        public Boolean isCollidable;
 
         public static Entity LoadUp(Level level, LevelData levelData, Vector2 offset, EntityData entityData)
         {
@@ -37,7 +36,6 @@ namespace Celeste.Mod.AurorasHelper.Entities
         {
             this.flag = data.Attr("Flag", "ah_fts_" + data.Level.Name + "_" + data.ID);
             this.state = data.Bool("State", true);
-            base.SetSpikeColor(Color.Black);
         }
         private static int GetSize(EntityData data, Spikes.Directions dir)
         {
@@ -48,13 +46,36 @@ namespace Celeste.Mod.AurorasHelper.Entities
             return data.Width;
         }
 
-        public override void Update()
+        public override void Awake(Scene scene)
         {
+            base.Awake(scene);
             Level level = base.Scene as Level;
-            // Used by Main Module to block the checks if required.
-            isCollidable = level.Session.GetFlag(this.flag)^state;
-            base.Update();
+            if (level == null) return;
+            bool curr = level.Session.GetFlag(this.flag) ^ state;
+            if (curr != base.Collidable) SetSpikeVisibility(curr);
+            base.Collidable = curr;
         }
 
+        public override void Update()
+        {
+            base.Update();
+            Level level = base.Scene as Level;
+            if (level == null) return;
+            bool curr = level.Session.GetFlag(this.flag) ^ state;
+            if (curr != base.Collidable) SetSpikeVisibility(curr);
+            base.Collidable = curr;
+        }
+
+        public void SetSpikeVisibility(bool visible)
+        {
+            foreach (Component component in base.Components)
+            {
+                Image image = component as Image;
+                if (image != null)
+                {
+                    image.Visible = visible;
+                }
+            }
+        }
     }
 }

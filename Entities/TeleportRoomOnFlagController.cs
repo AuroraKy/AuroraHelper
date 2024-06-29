@@ -100,6 +100,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
                     player.CleanUpTriggers();
                     lvl.Session.RespawnPoint = lvl.GetSpawnPoint(levelbounds);
                     Vector2 position = player.Position;
+                    Facings facing = player.Facing;
                     int dashes = player.Dashes;
                     player.Position = (position - levelbounds) + new Vector2(lvl.Bounds.Left, lvl.Bounds.Top);
                     //player.Speed = speed;
@@ -111,6 +112,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
                     //lvl.Session.RespawnPoint = lvl.GetSpawnPoint(lvl.Session.RespawnPoint ?? Vector2.Zero - levelbounds + new Vector2(lvl.Bounds.Left, lvl.Bounds.Top));
                     lvl.Entities.UpdateLists();
                     player.Dashes = dashes;
+                    player.Facing = facing;
                     lvl.Camera.Position += -levelbounds + new Vector2(lvl.Bounds.Left, lvl.Bounds.Top);
                     lvl.Update();
                     Leader.RestoreStrawberries(player.Leader);

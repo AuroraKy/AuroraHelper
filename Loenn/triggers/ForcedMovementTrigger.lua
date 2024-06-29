@@ -6,6 +6,7 @@ trigger.placements = {
     data = {
         Right = true,
         Presistent = true,
+        ImmediatelyOnRespawn = false,
         Speed = 90,
     }
 }

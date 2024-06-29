@@ -16,6 +16,8 @@ entity.placements = {
         ResetGravity = true,
         speedX = 200.0,
         keepEntrySpeed = false,
+        startGravityBasedOnVerticalVelocity = false,
+        Invisible = false,
     }
 }
 

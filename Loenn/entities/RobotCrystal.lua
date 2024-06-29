@@ -13,7 +13,9 @@ entity.placements = {
     name = "RobotCrystal",
     data = {
         Dir = 1,
-        speedX = 200.0
+        speedX = 200.0,
+        ImmediatelyOnRespawn = false,
+        Invisible = false,
     }
 }
 

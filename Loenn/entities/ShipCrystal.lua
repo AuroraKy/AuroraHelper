@@ -14,6 +14,7 @@ entity.placements = {
     data = {
         Dir = 1,
         speedX = 200.0,
+        Invisible = false,
     }
 }
 

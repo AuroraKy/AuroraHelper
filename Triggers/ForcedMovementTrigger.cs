@@ -10,12 +10,14 @@ namespace Celeste.Mod.AurorasHelper
 	{
 		private readonly bool right;
 		private readonly bool persistent;
-		private readonly int speed;
+        private readonly bool immediatelyOnRespawn;
+        private readonly int speed;
 
         public ForcedMovementTrigger(EntityData data, Vector2 offset) : base(data, offset)
 		{
 			right = data.Bool("Right", true);
 			persistent = data.Bool("Presistent", true);
+            immediatelyOnRespawn = data.Bool("ImmediatelyOnRespawn", false);
 			speed = data.Int("Speed", 90);
 		}
 
@@ -30,7 +32,9 @@ namespace Celeste.Mod.AurorasHelper
 			base.OnEnter(player);
 			AurorasHelperModule.Session.forcedSpeed = (right ? speed : -1 * speed);
 			AurorasHelperModule.Session.isForcedMovement = true;
-		}
+			AurorasHelperModule.Session.forcedMovementImmediatelyOnRespawn = immediatelyOnRespawn;
+
+        }
 
 		public override void OnLeave(Player player)
 		{

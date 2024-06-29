@@ -40,7 +40,7 @@ namespace Celeste.Mod.AurorasHelper
 
             DIR currDir = DIR.DOWN;
 
-            if(Input.Jump.Check)
+            if(Input.Jump.Check || Input.Aim.Value.Y < 0)
             {
                 currDir = DIR.UP;
             }
@@ -94,7 +94,7 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void Begin()
         {
-            AurorasHelperModule.Session.isInFakeModeState = false;
+            AurorasHelperModule.ResetFakeStates();
 
             //float speed = Math.Max(200, Math.Max(player.Speed.X, player.Speed.Y));
             //speedX = speed;

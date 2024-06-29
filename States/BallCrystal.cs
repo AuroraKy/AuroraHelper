@@ -26,6 +26,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
         private readonly bool resetGravity;
         private readonly bool keepEntrySpeed;
         private float respawnTimer;
+		public static bool startGravityBasedOnVerticalVelocity = false;
 
 		private Level level;
 
@@ -36,6 +37,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			speedX = data.Float("speedX", 200f);
             resetGravity = data.Bool("ResetGravity", true);
             keepEntrySpeed = data.Bool("keepEntrySpeed", false);
+            startGravityBasedOnVerticalVelocity = data.Bool("startGravityBasedOnVerticalVelocity", false);
 
             string spritePrefix = data.Attr("Sprite", "objects/auroras_helper/mode_crystals/ball_crystal/");
             dir = (BallState.DIR)data.Int("Dir", 1);

@@ -176,6 +176,7 @@ triggers.AurorasHelper/ResetStateTrigger.attributes.description.Activation=Wheth
 # ResetStateTrigger
 triggers.AurorasHelper/ForcedMovementTrigger.placements.name.ForcedMovementTrigger=Forced Movement Trigger
 triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.Right=Wether this trigger should force movement to the right or the left.
+triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.ImmediatelyOnRespawn=Whether this trigger should make you move immediately upon respawning or not.
 triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.Persistent=If enabled forced movement is not disabled when leaving the trigger.
 triggers.AurorasHelper/ForcedMovementTrigger.attributes.description.Speed=How fast the player should move. 90 is walking speed.
 

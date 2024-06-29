@@ -72,7 +72,7 @@ namespace Celeste.Mod.AurorasHelper
             /// <summary>
             /// int jumpCount
             /// </summary>
-            public static Action<int> SetJumpCount;
+            public static Action<int> CapJumpCount;
         }
 
         public AurorasHelperModule()
@@ -96,7 +96,6 @@ namespace Celeste.Mod.AurorasHelper
             On.Celeste.Seeker.CanAttack += ModSeekerCanAttack;
             On.Celeste.Seeker.CanSeePlayer += ModSeekerCanSeePlayer;
 
-            On.Celeste.Spikes.OnCollide += ModSpikesOnCollide;
 
             On.Celeste.Player.OnCollideH += ModPlayerCollideH;
 
@@ -145,7 +144,6 @@ namespace Celeste.Mod.AurorasHelper
             On.Celeste.LevelExit.Begin -= ModLevelExit;
             On.Celeste.Seeker.CanAttack -= ModSeekerCanAttack;
             On.Celeste.Seeker.CanSeePlayer -= ModSeekerCanSeePlayer;
-            On.Celeste.Spikes.OnCollide -= ModSpikesOnCollide;
             On.Celeste.Player.OnCollideH -= ModPlayerCollideH;
             On.Celeste.Player.DreamDashCheck -= Player_DreamDashCheck;
             On.Celeste.Player.ctor -= AddCustomStates;
@@ -155,16 +153,13 @@ namespace Celeste.Mod.AurorasHelper
             Everest.Events.Player.OnSpawn -= Player_OnSpawn;
             GoldenSaverTrigger.Unload();
         }
-
         private static bool OnLoadState(Func<object, bool, bool> orig, object stateManager, bool tas)
         {
-
             bool result = orig(stateManager, tas);
             Player player = (Engine.Scene as Level).Tracker?.GetEntity<Player>();
-            if(IsInModeState(player))
+            if(player != null && IsInModeState(player))
             {
                 // get speed stuff back or smth idk lel
-
             }
 
             return result;
@@ -178,7 +173,7 @@ namespace Celeste.Mod.AurorasHelper
         private static void ModPlayerUpdate(On.Celeste.Player.orig_Update orig, Player self)
         {
             orig(self);
-            if (!self.JustRespawned && Session.isForcedMovement && !IsInModeState(self, true))
+            if ((!self.JustRespawned || Session.forcedMovementImmediatelyOnRespawn) && Session.isForcedMovement && !IsInModeState(self, true))
             {
                 self.Speed.X = Session.forcedSpeed;
                 Vector2 scale = new Vector2(Math.Abs(self.Sprite.Scale.X) * (float)self.Facing, self.Sprite.Scale.Y);
@@ -186,13 +181,13 @@ namespace Celeste.Mod.AurorasHelper
             }
         }
 
+        public static Action onLeaveCrystalState = () => { };
         internal static void ResetFakeStates()
         {
+            onLeaveCrystalState();
+            onLeaveCrystalState = () => { };
             Session.isInFakeModeState = false;
             Session.isForcedMovement = false;
-            LuaCutscenesUtils.TriggerVariant?.Invoke("JumpHeight", 1f, false);
-            LuaCutscenesUtils.TriggerVariant?.Invoke("JumpDuration", 1f, false);
-            LuaCutscenesUtils.TriggerVariant?.Invoke("JumpCount", 1, false);
         }
 
 
@@ -336,7 +331,7 @@ namespace Celeste.Mod.AurorasHelper
 
         private bool ModSeekerCanAttack(On.Celeste.Seeker.orig_CanAttack orig, Seeker self)
         {
-            if (self is Entities.FriendlySeeker seeker)
+            if (self is FriendlySeeker seeker)
             {
                 if (!seeker.shouldAttack)
                 {
@@ -348,7 +343,7 @@ namespace Celeste.Mod.AurorasHelper
 
         private bool ModSeekerCanSeePlayer(On.Celeste.Seeker.orig_CanSeePlayer orig, Seeker self, Player player)
         {
-            if (self is Entities.FriendlySeeker seeker)
+            if (self is FriendlySeeker seeker)
             {
                 if (!seeker.shouldSee)
                 {
@@ -357,17 +352,7 @@ namespace Celeste.Mod.AurorasHelper
             }
             return orig(self, player);
         }
-        private void ModSpikesOnCollide(On.Celeste.Spikes.orig_OnCollide orig, Spikes self, Player player)
-        {
-            if (self is Entities.FlagTriggeredSpikes spike)
-            {
-                if (!spike.isCollidable)
-                {
-                    return;
-                }
-            }
-            orig(self, player);
-        }
+
 
         private void ModLevelPause(On.Celeste.Level.orig_Pause orig, Level self, int startIndex, bool minimal, bool quickReset)
         {

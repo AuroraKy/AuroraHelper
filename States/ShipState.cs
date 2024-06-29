@@ -74,7 +74,7 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void Begin()
         {
-            AurorasHelperModule.Session.isInFakeModeState = false;
+            AurorasHelperModule.ResetFakeStates();
             Player player = Engine.Scene.Tracker.GetEntity<Player>();
 
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
