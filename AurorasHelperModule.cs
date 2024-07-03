@@ -176,7 +176,8 @@ namespace Celeste.Mod.AurorasHelper
             if ((!self.JustRespawned || Session.forcedMovementImmediatelyOnRespawn) && Session.isForcedMovement && !IsInModeState(self, true))
             {
                 self.Speed.X = Session.forcedSpeed;
-                Vector2 scale = new Vector2(Math.Abs(self.Sprite.Scale.X) * (float)self.Facing, self.Sprite.Scale.Y);
+                bool invertTrail = (GravityHelperExports.GetPlayerGravity?.Invoke() ?? 0) == 1;
+                Vector2 scale = new Vector2(Math.Abs(self.Sprite.Scale.X) * (float)self.Facing, (invertTrail ? -1 : 1) * self.Sprite.Scale.Y);
                 if(Session.isInFakeModeState) TrailManager.Add(self, scale, Session.trailColor, 1f);
             }
         }

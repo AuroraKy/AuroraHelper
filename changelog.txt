@@ -26,6 +26,9 @@ draw lines connecting the blocks
 
 [] pause music on pause controller broken?
 
+0.12.1
+Fix trail by inverting y scale if gravity is flipped (thanks Samah for telling me how to fix it)
+
 0.12.0
 Wave also works with pressing up
 Fix spider not reversing your direction if already in spider state

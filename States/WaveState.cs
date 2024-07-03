@@ -78,7 +78,8 @@ namespace Celeste.Mod.AurorasHelper
             }
             player.Speed = speed;
 
-            Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, player.Sprite.Scale.Y);
+            bool invertTrail = (AurorasHelperModule.GravityHelperExports.GetPlayerGravity?.Invoke() ?? 0) == 1;
+            Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, (invertTrail ? -1 : 1) * player.Sprite.Scale.Y);
             TrailManager.Add(player, scale, Calc.HexToColor("76ebff"), 1f);
             return StateNumber;
         }

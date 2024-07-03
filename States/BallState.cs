@@ -48,7 +48,7 @@ namespace Celeste.Mod.AurorasHelper
             {
                 return player.StartDash();
             }
-            Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, player.Sprite.Scale.Y);
+            Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, (inverted ? -1 : 1 ) * player.Sprite.Scale.Y);
             TrailManager.Add(player, scale, Calc.HexToColor("ff0400"), 1f);
             return StateNumber;
         }
