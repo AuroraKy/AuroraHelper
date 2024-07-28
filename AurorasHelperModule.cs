@@ -16,6 +16,8 @@ namespace Celeste.Mod.AurorasHelper
         public static AurorasHelperModule Instance { get; private set; }
         public override Type SessionType => typeof(AurorasHelperSession);
         public static AurorasHelperSession Session => (AurorasHelperSession)Instance._Session;
+        public override Type SettingsType => typeof(AurorasHelperSettings);
+        public static AurorasHelperSettings Settings => (AurorasHelperSettings)Instance._Settings;
 
         private bool isPaused; 
         private IDetour Hook_StateManager_LoadState;

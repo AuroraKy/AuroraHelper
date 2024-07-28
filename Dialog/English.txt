@@ -3,3 +3,4 @@ Internet Connection is required to display this Memorial
 Pastebin link this would have displayed:
 
 AurorasHelper_ShowSubtitlesTrigger_CannotFindPath=Could not find .srt file at specified path!{n}DialogText field was also empty.
+auroraaquir_auroraHelper_allowupdirectioninwave= Allow Up Direction as Wave input

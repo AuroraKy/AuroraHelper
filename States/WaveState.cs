@@ -40,7 +40,7 @@ namespace Celeste.Mod.AurorasHelper
 
             DIR currDir = DIR.DOWN;
 
-            if(Input.Jump.Check || Input.Aim.Value.Y < 0)
+            if(Input.Jump.Check || (AurorasHelperSettings.AllowUpDirectionInWave && Input.Aim.Value.Y < 0))
             {
                 currDir = DIR.UP;
             }
