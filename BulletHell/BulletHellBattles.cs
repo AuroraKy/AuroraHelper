@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Celeste.Mod.AurorasHelper.BulletHell
 {
@@ -48,7 +49,7 @@ namespace Celeste.Mod.AurorasHelper.BulletHell
                 Logger.Log(LogLevel.Warn, "Aurora's Helper", "Could not find battle " + battleID);
                 if(Battles != null)
                 {
-                    Logger.Log(LogLevel.Warn, "Aurora's Helper", "Battles registered: " + Battles.Keys);
+                    Logger.Log(LogLevel.Warn, "Aurora's Helper", "Battles registered: " + String.Join(", ", Battles.Keys.ToArray()));
                 }
                 return null;
             }
