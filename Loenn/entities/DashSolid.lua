@@ -12,6 +12,7 @@ entity.placements = {
         TexturePath = "objects/auroras_helper/dashsolid/dream",
         OnTexturePath = "objects/auroras_helper/dashsolid/solid",
         ActiveColor = "00FFFF",
+        Attachable = true,
         RemainCollidableFrames = 0,
         width = 16,
         height = 16,
