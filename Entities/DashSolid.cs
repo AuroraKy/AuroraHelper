@@ -64,15 +64,18 @@ namespace Celeste.Mod.AurorasHelper.Entities
                 }
             }
 
-            base.Add(mover = new StaticMover
-			{
-				OnShake = new Action<Vector2>(this.OnShake),
-				SolidChecker = new Func<Solid, bool>((Solid solid) => {
-					if (solid is DashSolid) return false;
-					return base.CollideCheck(solid);
-				}),
-				OnDestroy = new Action(base.RemoveSelf)
-			});
+			bool attachable = data.Bool("Attachable", true);
+			if(attachable) {
+                base.Add(mover = new StaticMover {
+                    OnShake = new Action<Vector2>(this.OnShake),
+                    SolidChecker = new Func<Solid, bool>((Solid solid) => {
+                        if (solid is DashSolid) return false;
+                        return base.CollideCheck(solid);
+                    }),
+                    OnDestroy = new Action(base.RemoveSelf)
+                });
+
+            }
 			base.Depth = -11011; // must be above dream blocks
 		}
 		public override void Awake(Scene scene)
@@ -84,12 +87,21 @@ namespace Celeste.Mod.AurorasHelper.Entities
 
         public override void Update()
         {
-			base.Update();
-			if (!player?.DashAttacking ?? true && !this.Collidable)
+			base.Update(); 
+			Level level = base.SceneAs<Level>(); 
+			if (level != null && !level.InsideCamera(Center, Math.Max(Width/2f, Height / 2f))) {
+				Visible = false;
+				Collidable = false;
+				return;
+			} else {
+				Visible = true;
+            }
+
+            if (!player?.DashAttacking ?? true && !this.Collidable)
 			{
 				if(!this.becomeUncollidable.Active) becomeUncollidable.Replace(BecomeUncollidable());
             }
-			if (HasPlayerOnTop() || HasPlayerRider() || HasPlayerClimbing()) mover.TriggerPlatform();
+			if (HasPlayerOnTop() || HasPlayerRider() || HasPlayerClimbing()) mover?.TriggerPlatform(); 
         }
 
 		private IEnumerator BecomeUncollidable()
@@ -154,6 +166,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
 		}
 		private void DashedDirection(Vector2 dir)
 		{
+			if (!Visible) return;
 			// new dash initiated, reset so it doesn't stay solid
 			bool shouldBeSolid = CheckBlock(dir);
 			if (shouldBeSolid)
