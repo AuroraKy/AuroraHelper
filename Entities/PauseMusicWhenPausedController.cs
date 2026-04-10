@@ -62,7 +62,11 @@ namespace Celeste.Mod.AurorasHelper.Entities
 
         public static void OnUnPause()
         {
-            if(AurorasHelperModule.Session.isValidMusicPosition)
+            if (AurorasHelperModule.Session.CurrentMusicChannel == null) {
+                AurorasHelperModule.Session.isValidMusicPosition = false;
+                return;
+            }
+            if (AurorasHelperModule.Session.isValidMusicPosition)
             {
                 FMOD.RESULT result = AurorasHelperModule.Session.CurrentMusicChannel.setPosition(AurorasHelperModule.Session.CurrentMusicPosition, FMOD.TIMEUNIT.PCM);
                 if(result != FMOD.RESULT.OK)

@@ -3,28 +3,41 @@ Music Sync respawns?
 
 Ideas:
 [] PlayAudio has Subtitle field (does the same as subtitle trigger)
-
-Should spider hit all things in the teleport? lol
-
-Things to fix:
-Jump input seems to not work sometimes? weird.
-
-GD gamemodes:
-X ship -> funny (hold to go up/down)
-X wave -> funny (it's a wave idk)
-X spider -> teleport to thing above and change gravity
-x ball -> spider but no telport
-"fake states"
-/ cube -> hold right (but you can't hold jump to go higher ExtVar.)
-/ robot -> hold right (can hold jump)
-/ ufo -> hold right infinite jumps
-
-Stuff I gotta make:
-Pulse entity thing
-Pulse trigger thing
-draw lines connecting the blocks
-
 [] pause music on pause controller broken?
+
+
+--
+^ Not Released
+
+v Released
+--
+
+0.12.6
+Add CountEntityTrigger (kinda cursed)
+Add RainbowTitleText meta options
+
+0.12.5 
+
+Remove rocket from sprites.xml (i didn't actually port it lol)
+Add RandomizedDecal (simple random loop)
+[] spider hits things when teleporting (option)
+
+0.12.4 
+
+fix a bug where currentmusicchannel is not null checked
+
+0.12.3
+DashSolid culling to help with lag
+Add dashsolid attachable support
+Add swingcopter
+Add add sprites by xelk
+add hair to sprites by xek (kinda work..)
+fix move force trigger not forcing it correctly (you can still hold directions)
+Fix some gd states letting you hold direction to influence it
+Add broken spring support to cube state (it can do superbounces but weirdly.. idk it's kinda dumb)
+
+0.12.2
+Added setting to allow wave dash up input, disabled by default
 
 0.12.1
 Fix trail by inverting y scale if gravity is flipped (thanks Samah for telling me how to fix it)

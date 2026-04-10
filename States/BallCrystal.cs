@@ -160,6 +160,8 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			// what it actually does
 			Audio.Play(soundEffect, this.Position);
 
+            //AurorasHelperModule.ResetStateChanges();
+
             //float num = Calc.Angle(player.Position, this.Position);
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
             if (sd == null)

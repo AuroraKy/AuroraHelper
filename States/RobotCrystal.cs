@@ -1,4 +1,5 @@
-﻿using Celeste.Mod.Entities;
+﻿using Celeste.Mod.AurorasHelper.Components;
+using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
 using System;
@@ -21,6 +22,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
 		private readonly ParticleType p_regen;
 		private readonly string soundEffect = "event:/game/general/diamond_touch";
 		private readonly float speedX;
+		private readonly AuroraHelperPlayerStateData.DIR dir;
         private readonly bool immediatelyOnRespawn;
         private float respawnTimer;
 
@@ -35,6 +37,7 @@ namespace Celeste.Mod.AurorasHelper.Entities
 
             string spritePrefix = data.Attr("Sprite", "objects/auroras_helper/mode_crystals/robot_crystal/");
             int dir = data.Int("Dir", 1);
+			this.dir = (dir == 1 ? AuroraHelperPlayerStateData.DIR.RIGHT : AuroraHelperPlayerStateData.DIR.LEFT);
 			speedX *= dir;
 
 			// refill code copy paste lmao lol
@@ -90,15 +93,16 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			this.UpdateY();
 			base.Depth = -100;
 
-			base.Add(new DashListener
+			/*base.Add(new DashListener
 			{
 				OnDash = (Vector2 dir) =>
 				{
+					OnLeaveCrystalState();
 				}
-			});
+			});*/
 		}
 
-        public static void OnLeaveCrystalState()
+       /* public static void OnLeaveCrystalState()
         {
             AurorasHelperSession session = AurorasHelperModule.Session;
 
@@ -106,9 +110,15 @@ namespace Celeste.Mod.AurorasHelper.Entities
             {
                 session.isInFakeModeState = false;
                 session.isForcedMovement = false;
-				session.currentState = AurorasHelperSession.STATE.None;
+				Player player = (Engine.Scene as Level).Tracker.GetEntity<Player>();
+                var sd = player?.Components.Get<AuroraHelperPlayerStateData>();
+				if(sd != null) {
+                    sd.PlayerSpriteReplacement.RemoveSelf();
+                    sd.PlayerSpriteReplacement = null;
+                }
+                session.currentState = AurorasHelperSession.STATE.None;
             }
-        }
+        }*/
 
         public override void Added(Scene scene)
         {
@@ -167,22 +177,33 @@ namespace Celeste.Mod.AurorasHelper.Entities
 			yield break;
 		}
 
-		private void OnPlayer(Player player)
+		private void OnPlayer(Player player) 	
 		{
-			base.Add(new Coroutine(this.TheFreezinator(), true));
+            if (!immediatelyOnRespawn && player.JustRespawned) return;
+            base.Add(new Coroutine(this.TheFreezinator(), true));
 			// what it actually does
 			Audio.Play(soundEffect, this.Position);
 
-			float num = Calc.Angle(player.Position, this.Position);
+			/*float num = Calc.Angle(player.Position, this.Position);
             player.StateMachine.State = Player.StNormal;
-            AurorasHelperModule.ResetFakeStates();
+            AurorasHelperModule.ResetStateChanges();
+			AurorasHelperModule.onLeaveCrystalState = OnLeaveCrystalState;
             AurorasHelperSession session = AurorasHelperModule.Session;
             session.currentState = AurorasHelperSession.STATE.Robot;
             session.isInFakeModeState = true;
 			session.isForcedMovement = true;
 			session.forcedMovementImmediatelyOnRespawn = immediatelyOnRespawn;
             session.forcedSpeed = speedX;
-			session.trailColor = Color.White;
+			session.trailColor = Color.White;*/
+
+            var sd = player.Components.Get<AuroraHelperPlayerStateData>();
+            if (sd == null) {
+                sd = new AuroraHelperPlayerStateData();
+                player.Add(sd);
+            }
+            sd.GDStateDir = this.dir;
+            sd.speedX = speedX;
+            player.StateMachine.State = RobotState.StateNumber;
 
             // respawn stuff
             this.sprite.Visible = (this.flash.Visible = false);

@@ -1,9 +1,9 @@
 - Name: AurorasHelper
-  Version: 0.12.2
+  Version: 0.12.6
   DLL: bin/AurorasHelper.dll
   Dependencies:
-    - Name: Everest
-      Version: 1.2781.0
+    - Name: EverestCore
+      Version: 1.5935.0
   OptionalDependencies:
     - Name: GravityHelper
       Version: 1.1.42

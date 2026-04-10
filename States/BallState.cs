@@ -34,7 +34,7 @@ namespace Celeste.Mod.AurorasHelper
             {
                 sd.speed.Y = 0;
             }
-
+             
 
             if (player.OnGround() && Input.Jump.Pressed)
             {
@@ -48,8 +48,11 @@ namespace Celeste.Mod.AurorasHelper
             {
                 return player.StartDash();
             }
-            Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, (inverted ? -1 : 1 ) * player.Sprite.Scale.Y);
-            TrailManager.Add(player, scale, Calc.HexToColor("ff0400"), 1f);
+
+            Sprite visibleSprite = sd.PlayerSpriteReplacement.sprite;
+            player.Facing = Math.Sign(player.Speed.X) > 0 ? Facings.Right : Facings.Left;
+            Vector2 scale = new Vector2(Math.Abs(visibleSprite.Scale.X) * (float)player.Facing, visibleSprite.Scale.Y);
+            //TrailManager.Add(sd.PlayerSpriteReplacement.fakeSpriteEntity, scale, Calc.HexToColor("ff0400"), 1f);
             return StateNumber;
         }
 
@@ -65,7 +68,7 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void Begin()
         {
-            AurorasHelperModule.ResetFakeStates();
+            //AurorasHelperModule.ResetStateChanges();
             Player player = Engine.Scene.Tracker.GetEntity<Player>();
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
 
@@ -85,7 +88,11 @@ namespace Celeste.Mod.AurorasHelper
             //float speed = Math.Max(200, Math.Max(player.Speed.X, player.Speed.Y));
             //speedX = speed;
             //speedY = speed;
-            // do collider and sfx later ig idk
+
+            //Display stuff 
+            Sprite replacement = GFX.SpriteBank.Create("aurorahelper_madelineModeBall");
+            player.Add(sd.PlayerSpriteReplacement = new PlayerSpriteReplacement(replacement, new Vector2(0, -15), new Vector2(0, 15)));
+            sd.PlayerSpriteReplacement.PlayAnimation("loop");
         }
 
         public static void End()
@@ -95,6 +102,11 @@ namespace Celeste.Mod.AurorasHelper
                 AurorasHelperModule.GravityHelperExports.SetPlayerGravity?.Invoke(originalGravity, 1);
             }
             // ?
+            Player player = Engine.Scene.Tracker.GetEntity<Player>();
+            var sd = player?.Components.Get<AuroraHelperPlayerStateData>();
+
+            sd?.PlayerSpriteReplacement.RemoveSelf();
+
         }
 
     }

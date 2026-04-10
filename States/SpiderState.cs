@@ -4,6 +4,10 @@ using Monocle;
 using Microsoft.Xna.Framework;
 using Celeste.Mod.AurorasHelper.Components;
 using static Celeste.TrackSpinner;
+using static Celeste.Mod.AurorasHelper.AurorasHelperModule;
+using System.Reflection.Metadata;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Celeste.Mod.AurorasHelper
 {
@@ -81,12 +85,22 @@ namespace Celeste.Mod.AurorasHelper
                 Rectangle bounds = (Engine.Scene as Level).Bounds;
                 int yLimit = (inverted ? bounds.Top - 17 : bounds.Bottom + 16);
 
+                //List<PlayerCollider> colliders = player.SceneAs<Level>()?.Tracker.GetComponents<PlayerCollider>()?.Select(x => x as PlayerCollider).ToList();
                 if (inverted)
                 {
                     for (int i = (int)position.Y-1; i > yLimit; i--)
                     {
                         position.Y = i;
-                        if(player.CollideCheck<Solid>(position))
+/*
+                        for (int j = colliders.Count - 1; j >= 0; j--) {
+                            PlayerCollider collider = colliders[j];
+                            if (collider.Entity.CollideCheck(player, position)) {
+                                collider.OnCollide(player);
+                                colliders.RemoveAt(j); // Use RemoveAt for better performance with an index
+                            }
+                        }*/
+
+                        if (player.CollideCheck<Solid>(position))
                         {
                             break;
                         }
@@ -114,9 +128,10 @@ namespace Celeste.Mod.AurorasHelper
             {
                 return player.StartDash();
             }
-            Vector2 scale = new Vector2(Math.Abs(player.Sprite.Scale.X) * (float)player.Facing, (inverted ? -1 : 1) * player.Sprite.Scale.Y);
-            TrailManager.Add(player, scale, Calc.HexToColor("ae28ff"), 1f);
-
+            Sprite visibleSprite = sd.PlayerSpriteReplacement.sprite;
+            player.Facing = Math.Sign(player.Speed.X) > 0 ? Facings.Right : Facings.Left;
+            Vector2 scale = new Vector2(Math.Abs(visibleSprite.Scale.X) * (float)player.Facing, visibleSprite.Scale.Y);
+            //TrailManager.Add(sd.PlayerSpriteReplacement.fakeSpriteEntity, scale, Calc.HexToColor("ae28ff"), 1f);
             return StateNumber;
         }
 
@@ -131,7 +146,6 @@ namespace Celeste.Mod.AurorasHelper
 
         public static void Begin()
         {
-            AurorasHelperModule.ResetFakeStates();
             Player player = Engine.Scene.Tracker.GetEntity<Player>();
             var sd = player.Components.Get<AuroraHelperPlayerStateData>();
 
@@ -150,10 +164,18 @@ namespace Celeste.Mod.AurorasHelper
             //speedX = speed;
             //speedY = speed;
             // do collider and sfx later ig idk
+            Sprite replacement = GFX.SpriteBank.Create("aurorahelper_madelineModeSpider");
+            player.Add(sd.PlayerSpriteReplacement = new PlayerSpriteReplacement(replacement, new Vector2(0, -15), new Vector2(0, 15), //normal offsets
+                                                                                       true, new Vector2(1, 11), new Vector2(1, -8))); // hair offsets
+            player.Facing = Math.Sign(sd.speedX) > 0 ? Facings.Right : Facings.Left;
+            sd.PlayerSpriteReplacement.PlayAnimation("loop");
         }
 
-        public static void End()
-        {
+        public static void End() {
+            Player player = Engine.Scene.Tracker.GetEntity<Player>();
+            var sd = player?.Components.Get<AuroraHelperPlayerStateData>();
+            sd?.PlayerSpriteReplacement.RemoveSelf();
+
             if (resetGravity)
             {
                 AurorasHelperModule.GravityHelperExports.SetPlayerGravity?.Invoke(originalGravity, 1);

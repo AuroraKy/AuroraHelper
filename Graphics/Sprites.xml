@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Sprites>
+	<!-- BALL -->
+	<aurorahelper_madelineModeBall path="objects/auroras_helper/mode_sprites/Ball/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Loop id="loop" path="ball" delay="0.05" frames="0-8"/>
+		
+		<Loop id="loop_left" path="ball" delay="0.05" frames="8,7,6,5,4,3,2,1,0"/>
+	</aurorahelper_madelineModeBall>
+	<!-- Robot -->
+	<aurorahelper_madelineModeRobot path="objects/auroras_helper/mode_sprites/Robot/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Loop id="loop" path="robotrightwalk" delay="0.1" frames="0-7"/>
+		<Anim id="jump" path="robotrightjump" delay="0.1" frames="0-1" goto="jump_loop"/>
+		<Loop id="jump_loop" path="robotrightjump" delay="0.1" frames="2-5"/>
+		
+		
+		<Loop id="loop_left" path="robotleftwalk" delay="0.1" frames="0-7"/>
+		<Anim id="jump_left" path="robotleftjump" delay="0.1" frames="0-1" goto="jump_loop_left"/>
+		<Loop id="jump_loop_left" path="robotleftjump" delay="0.1" frames="2-5"/>
+	</aurorahelper_madelineModeRobot>
+	<!-- Ship -->
+	<aurorahelper_madelineModeShip path="objects/auroras_helper/mode_sprites/Ship/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Loop id="loop" path="shiprightdown" delay="0.1" frames="0"/>
+		
+		<Loop id="loop_left" path="shipleftdown" delay="0.1" frames="0"/>
+	</aurorahelper_madelineModeShip>
+	<!-- Spider -->
+	<aurorahelper_madelineModeSpider path="objects/auroras_helper/mode_sprites/Spider/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Loop id="loop" path="spiderrightnormal" delay="0.1" frames="0-3"/>
+
+		<Loop id="loop_left" path="spiderleftnormal" delay="0.1" frames="0-3"/>
+	</aurorahelper_madelineModeSpider>
+	<!-- Swingcopter -->
+	<aurorahelper_madelineModeSwingcopter path="objects/auroras_helper/mode_sprites/Swingcopter/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Anim id="loop" path="swingcopterrightdown" delay="0.1" frames="0-8" goto="loop_end"/>
+		<Loop id="loop_end" path="swingcopterrightdown" delay="0.1" frames="6-8"/>
+		<Anim id="loop_up" path="swingcopterrightup" delay="0.1" frames="0-8" goto="loop_up_end"/>
+		<Loop id="loop_up_end" path="swingcopterrightup" delay="0.1" frames="6-8"/>
+
+		<Anim id="loop_left" path="swingcopterleftdown" delay="0.1" frames="0-8" goto="loop_end"/>
+		<Loop id="loop_end_left" path="swingcopterleftdown" delay="0.1" frames="6-8"/>
+		<Anim id="loop_up_left" path="swingcopterleftup" delay="0.1" frames="0-8" goto="loop_up_end"/>
+		<Loop id="loop_up_end_left" path="swingcopterleftup" delay="0.1" frames="6-8"/>
+	</aurorahelper_madelineModeSwingcopter>
+	<!-- UFO -->
+	<aurorahelper_madelineModeUfo path="objects/auroras_helper/mode_sprites/UFO/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Loop id="loop" path="ufoidle" delay="0.1" frames="0"/>
+
+
+		<Loop id="loop_left" path="ufoidle" delay="0.1" frames="0"/>
+	</aurorahelper_madelineModeUfo>
+	<!-- Wave -->
+	<aurorahelper_madelineModeWave path="objects/auroras_helper/mode_sprites/Wave/" start="loop">
+		<Justify x="0.5" y="0.5"/>
+		<Loop id="loop" path="waverightdown" delay="0.1" frames="0"/>
+		<Loop id="loop_up" path="waverightup" delay="0.1" frames="0"/>
+
+
+		<Loop id="loop_left" path="waveleftdown" delay="0.1" frames="0"/>
+		<Loop id="loop_up_left" path="waveleftup" delay="0.1" frames="0"/>
+	</aurorahelper_madelineModeWave>
+
+
+
+
+
+<!--
+<madelineRocketDiag path="objects/ss2024/rocket/butcherberries/" start="loop">
+	<Justify x="0.5" y="0.5"/>
+	<Loop id="stopped" path="small_diag" delay="0.1" frames="0"/>
+	<Anim id="start" path="smallflame_diag_on" delay="0.1" frames="0-3" goto="loop"/>
+	<Loop id="loop" path="smallflame_diag" delay="0.1" frames="0-5"/>
+	<Anim id="stop" path="smallflame_diag_off" delay="0.1" frames="0-3" goto="stopped"/>
+</madelineRocketDiag>
+	-->
+</Sprites>

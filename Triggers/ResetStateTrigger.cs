@@ -47,7 +47,7 @@ namespace Celeste.Mod.AurorasHelper
         {
 			if (only_aurora_helper_states && !AurorasHelperModule.IsInModeState(player)) return false;
 			player.StateMachine.State = Player.StNormal;
-			AurorasHelperModule.Session.isInFakeModeState = false;
+			//AurorasHelperModule.Session.isInFakeModeState = false;
 			return true;
         }
 

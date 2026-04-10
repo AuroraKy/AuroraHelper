@@ -1,5 +1,11 @@
 mods.AurorasHelper.name=Aurora's Helper
 
+# Randomized Decal
+c
+entities.AurorasHelper/RandomizedDecal.placements.name.RandomizedDecal=Randomized Decal
+entities.AurorasHelper/RandomizedDecal.attributes.description.textures=Comma seperate list of textures.
+entities.AurorasHelper/RandomizedDecal.attributes.description.copies=How many copies of each texture is added to the shuffle bag before shuffling. This entire shuffled sequence is then looped
+
 # SpeedLimitFlagController
 entities.AurorasHelper/SpeedLimitFlagController.placements.name.SpeedLimitFlagController=Speed Limit Flag Controller
 entities.AurorasHelper/SpeedLimitFlagController.attributes.description.speedLimit=Speed limit does not take all speed sources into account, it attempts to check for overall movement ignoring direction.
